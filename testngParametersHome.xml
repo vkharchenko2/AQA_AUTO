@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<suite name="AllTests Suite">
+    <test name="My Test">
+        <parameters>
+            <parameter name="email" value="v.kharchenko996@gmail.com"/>
+            <parameter name="password" value="qwerty"/>
+        </parameters>
+        <classes>
+            <class name="lesson_11.parametrization.ParametrizationTest"/>
+        </classes>
+    </test>
+</suite>

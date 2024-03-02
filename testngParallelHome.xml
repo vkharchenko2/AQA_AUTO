@@ -1,0 +1,12 @@
+<suite name="AllTests Suite" parallel="Tests" thread-count="2">
+    <test name="Test1">
+        <classes>
+            <class name="lesson_11.parallelismus.Parallelismus1"/>
+        </classes>
+    </test>
+    <test name="Test2">
+        <classes>
+            <class name="lesson_11.parallelismus.Parallelismus2"/>
+        </classes>
+    </test>
+</suite>
