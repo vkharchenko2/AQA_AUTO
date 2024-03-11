@@ -5,6 +5,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -57,5 +58,14 @@ public class DriverUtil {
         Alert prompt = wait.until(ExpectedConditions.alertIsPresent());
         prompt.sendKeys(message);
         prompt.accept();
+    }
+
+    public static String getCurrentUrl(){
+        return getDriver().getCurrentUrl();
+    }
+
+    public static void waitForUrlToChange(String url){
+        Wait<WebDriver> wait = new WebDriverWait(DriverUtil.getDriver(), Duration.ofSeconds(3));
+        wait.until(ExpectedConditions.not(ExpectedConditions.urlToBe(url)));
     }
 }

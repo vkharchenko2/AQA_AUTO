@@ -6,8 +6,9 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-public class Registration {
+public class RegistrationPage {
 
+    public static final String REGISTRATION_PAGE = "https://qa-course-01.andersenlab.com/registration";
     private By firstName = By.xpath("//input[@placeholder='Fitst Name']");
     private By lastName = By.xpath("//input[@placeholder ='Last Name']");
     private By email = By.xpath("//input[@placeholder='Enter email']");
@@ -18,10 +19,6 @@ public class Registration {
     private By yearLocator = By.xpath("//div[@class='react-datepicker__month-container']//select[1]");
     private By monthLocator = By.xpath("//div[@class='react-datepicker__month-container']//select[2]");
     private String dayLocatorTemplate = "//div[text()='%s']";
-
-    public String getCurrentURL() {
-        return DriverUtil.getDriver().getCurrentUrl();
-    }
 
     public void enterKeyWords(String enterFirstName,
                               String enterLastName,
