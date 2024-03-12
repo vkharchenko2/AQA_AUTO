@@ -1,18 +1,17 @@
 package lesson_12.task2;
 
-import lesson_12.driverUtil.DriverUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static lesson_12.driverUtil.DriverUtil.*;
-
 public class GuinnessPage {
 
+    private WebDriver driver;
     private By lastName = By.xpath("//input[@name='LastName']");
     private By firstName = By.xpath("//input[@name='FirstName']");
     private By day = By.xpath("//input[@id='DateOfBirthDay']");
@@ -26,57 +25,61 @@ public class GuinnessPage {
     private By confirmPassword = By.xpath("//input[@name='ConfirmPassword']");
     private By errorMessage= By.xpath("//span[@for='ConfirmPassword']");
 
+    public GuinnessPage(WebDriver driver){
+        this.driver = driver;
+    }
+
     public void inputLastName(String lName){
-        getDriver().findElement(lastName).sendKeys(lName);
+        driver.findElement(lastName).sendKeys(lName);
     }
 
     public void inputFirstName(String fName){
-        getDriver().findElement(firstName).sendKeys(fName);
+        driver.findElement(firstName).sendKeys(fName);
     }
 
     public void inputDay(String birthDay){
-        getDriver().findElement(day).sendKeys(birthDay);
+        driver.findElement(day).sendKeys(birthDay);
     }
 
     public void inputMonth(String birthMonth){
-        getDriver().findElement(month).sendKeys(birthMonth);
+        driver.findElement(month).sendKeys(birthMonth);
     }
 
     public void inputYear(String birthYear){
-        getDriver().findElement(year).sendKeys(birthYear);
+        driver.findElement(year).sendKeys(birthYear);
     }
 
     public void inputCountry(String birthCountry){
-        new Select(DriverUtil.getDriver().findElement(country)).selectByVisibleText(birthCountry);
+        new Select(driver.findElement(country)).selectByVisibleText(birthCountry);
     }
 
     public void inputCity(String birthCity){
-        getDriver().findElement(county).sendKeys(birthCity);
+        driver.findElement(county).sendKeys(birthCity);
     }
 
     public void inputEmail(String emailAddress){
-        getDriver().findElement(email).sendKeys(emailAddress);
+        driver.findElement(email).sendKeys(emailAddress);
     }
 
     public void confirmEmail(String confirm){
-        getDriver().findElement(confirmEmail).sendKeys(confirm);
+        driver.findElement(confirmEmail).sendKeys(confirm);
     }
 
     public void inputPassword(String enterPassword){
-        getDriver().findElement(password).sendKeys(enterPassword);
+        driver.findElement(password).sendKeys(enterPassword);
     }
 
     public void confirmPassword(String verifyPassword){
-        getDriver().findElement(confirmPassword).sendKeys(verifyPassword);
+        driver.findElement(confirmPassword).sendKeys(verifyPassword);
     }
 
     public String getErrorText(){
-        WebDriverWait wait = new WebDriverWait(DriverUtil.getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage));
-        return getDriver().findElement(errorMessage).getText();
+        return driver.findElement(errorMessage).getText();
     }
 
     public void clickOnPassword(){
-        getDriver().findElement(confirmPassword).sendKeys(Keys.ENTER);
+        driver.findElement(confirmPassword).sendKeys(Keys.ENTER);
     }
 }

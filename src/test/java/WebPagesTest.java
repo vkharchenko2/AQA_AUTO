@@ -1,10 +1,14 @@
-package lesson_12.task2;
-
-import lesson_12.driverUtil.DriverUtil;
+import lesson_12.task2.*;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class WebPagesTest {
+public class WebPagesTest extends BaseTest{
 
+    private static GoogleMainPage googleMainPage;
+    private static GoogleSearchResultsPage googleSearchResultsPage;
+    private static GuinnessPage guinnessPage;
+    private static HyrTutorialsPage hyrTutorialsPage;
+    private static W3SchoolsPage w3SchoolsPage;
     public static final String GOOGLE = "https://www.google.com/search";
     public static final String TUTORIALS = "https://www.hyrtutorials.com/p/alertsdemo.html";
     public static final String GUINNESS_RECORDS = "https://www.guinnessworldrecords.com/account/register?";
@@ -21,23 +25,29 @@ public class WebPagesTest {
     public static final String INCORRECT_PASSWORD = "QWRTYasd";
     public static final String PROMPT_MESSAGE = "Final step of this task";
 
+    @BeforeClass
+    public void setUpClass(){
+        googleMainPage = new GoogleMainPage(getDriver());
+        googleSearchResultsPage = new GoogleSearchResultsPage(getDriver());
+        guinnessPage = new GuinnessPage(getDriver());
+        hyrTutorialsPage = new HyrTutorialsPage(getDriver());
+        w3SchoolsPage = new W3SchoolsPage(getDriver());
+    }
+
     @Test
     public void pagesTest() {
-        DriverUtil.getDriver().get(GOOGLE);
-        GoogleMainPage googleMainPage = new GoogleMainPage();
+        BaseTest.getDriver().get(GOOGLE);
         googleMainPage.clickIfCookieIsPresent();
         googleMainPage.fillingInSearchBar(GUINNESS_RECORDS);
         googleMainPage.enter();
-        GoogleSearchResultsPage googleSearchResultsPage = new GoogleSearchResultsPage();
         googleSearchResultsPage.clickOnGuinness();
         googleSearchResultsPage.deleteInput();
         googleSearchResultsPage.fillingInSearchBar(TUTORIALS);
         googleSearchResultsPage.enterClick();
         googleSearchResultsPage.openFirstResultOnANewTab();
 
-        DriverUtil.getDriver().get(W_3_SCHOOL);
-        DriverUtil.switchToTab(W_3_SCHOOL);
-        W3SchoolsPage w3SchoolsPage = new W3SchoolsPage();
+        BaseTest.getDriver().get(W_3_SCHOOL);
+        BaseTest.switchToTab(W_3_SCHOOL);
         w3SchoolsPage.clickIfCookieIsPresent();
         w3SchoolsPage.deleteFirstName();
         w3SchoolsPage.inputFirstName(FIRST_NAME);
@@ -46,8 +56,7 @@ public class WebPagesTest {
         w3SchoolsPage.clickOnSubmit();
         System.out.println(w3SchoolsPage.getNoteText());
 
-        DriverUtil.switchToTab(GUINNESS_RECORDS);
-        GuinnessPage guinnessPage = new GuinnessPage();
+        BaseTest.switchToTab(GUINNESS_RECORDS);
         guinnessPage.inputLastName(LAST_NAME);
         guinnessPage.inputFirstName(FIRST_NAME);
         guinnessPage.inputDay(DAY);
@@ -62,17 +71,15 @@ public class WebPagesTest {
         guinnessPage.clickOnPassword();
         System.out.println(guinnessPage.getErrorText());
 
-        DriverUtil.switchToTab(TUTORIALS);
-        HyrTutorialsPage hyrTutorialsPage = new HyrTutorialsPage();
+        BaseTest.switchToTab(TUTORIALS);
         hyrTutorialsPage.clickOnAlertBtn();
-        DriverUtil.acceptAlert();
+        BaseTest.acceptAlert();
         System.out.println(hyrTutorialsPage.getMessage());
         hyrTutorialsPage.clickOnConfirmBtn();
-        DriverUtil.dismissConfirm();
+        BaseTest.dismissConfirm();
         System.out.println(hyrTutorialsPage.getMessage());
         hyrTutorialsPage.clickOnPromptBtn();
-        DriverUtil.fillInAndAcceptPrompt(PROMPT_MESSAGE);
+        BaseTest.fillInAndAcceptPrompt(PROMPT_MESSAGE);
         System.out.println(hyrTutorialsPage.getMessage());
-        DriverUtil.deleteDriver();
     }
 }
