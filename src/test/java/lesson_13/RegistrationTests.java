@@ -34,7 +34,7 @@ public class RegistrationTests extends BaseTest {
         userPage = new UserPage(driver);
     }
 
-    @Test
+    @Test(description = "Test checks possibility of registration with a date from the future")
     public void registrationBirthDateFromTheFutureTest() {
         driver.get(REGISTRATION_PAGE_URL);
         Assert.assertEquals(getCurrentUrl(), REGISTRATION_PAGE_URL, "Registration page is not open");
@@ -43,7 +43,7 @@ public class RegistrationTests extends BaseTest {
         // Здесь должна была быть проверка, что появилось сообщение о некорректной дате.
     }
 
-    @Test
+    @Test(description = "Test checks possibility of registration with an invalid symbols in user's first and last name")
     public void registrationWithInvalidSymbolsInNameAndLastNameTest() {
         driver.get(REGISTRATION_PAGE_URL);
         Assert.assertEquals(getCurrentUrl(), REGISTRATION_PAGE_URL, "Registration page is not open");
@@ -52,8 +52,8 @@ public class RegistrationTests extends BaseTest {
         //Здесь должна была быть проверка, что появилось сообщение о некорректном имени и фамилии.
     }
 
-    @Test
-    public void registrationInvalidEmailTest() {
+    @Test(description = "Test checks possibility of registration without an @ in email address")
+    public void registrationWithoutAtSignInEmailTest() {
         driver.get(REGISTRATION_PAGE_URL);
         Assert.assertEquals(getCurrentUrl(), REGISTRATION_PAGE_URL, "Registration page is not open");
         registrationPage.enterKeyWords(FIRST_NAME, LAST_NAME, DATE_OF_BIRTH, WRONG_EMAIL_ADDRESS, PASSWORD, PASSWORD)
@@ -61,8 +61,8 @@ public class RegistrationTests extends BaseTest {
         Assert.assertTrue(registrationPage.isInvalidEmailErrorMessageDisplayed(), "Invalid email error message is not displayed");
     }
 
-    @Test
-    public void registrationNotMatchingPasswordsTest() {
+    @Test(description = "Test check if passwords must match error message is present")
+    public void passwordsMustMatchErrorMessageTest() {
         driver.get(REGISTRATION_PAGE_URL);
         Assert.assertEquals(getCurrentUrl(), REGISTRATION_PAGE_URL, "Registration page is not open");
         registrationPage.enterKeyWords(FIRST_NAME, LAST_NAME, DATE_OF_BIRTH, EMAIL_ADDRESS, PASSWORD, ANOTHER_PASSWORD)
@@ -70,8 +70,8 @@ public class RegistrationTests extends BaseTest {
         Assert.assertTrue(registrationPage.isPasswordsMustMatchErrorMessageDisplayed(), "Passwords must match error message is not displayed");
     }
 
-    @Test
-    public void registrationShortPasswordTest() {
+    @Test(description = "Test check if minimum 8 characters error message is present")
+    public void minimum8CharactersErrorMessageTest() {
         driver.get(REGISTRATION_PAGE_URL);
         Assert.assertEquals(getCurrentUrl(), REGISTRATION_PAGE_URL, "Registration page is not open");
         registrationPage.enterKeyWords(FIRST_NAME, LAST_NAME, DATE_OF_BIRTH, EMAIL_ADDRESS, TOO_SHORT_PASSWORD, TOO_SHORT_PASSWORD)

@@ -29,7 +29,7 @@ public class EditTests extends BaseTest {
         userPage = new UserPage(driver);
     }
 
-    @Test
+    @Test(description = "Edit first name test")
     public void editFirstNameTest() {
         driver.get(LOGIN_PAGE_URL);
         Assert.assertEquals(getCurrentUrl(), LOGIN_PAGE_URL, "Login page is not open");
@@ -47,7 +47,7 @@ public class EditTests extends BaseTest {
         Assert.assertEquals(userPage.getUserName(), FIRST_NAME, "Names are not equal");
     }
 
-    @Test
+    @Test(description = "Edit last name test")
     public void editLastNameTest() {
         driver.get(LOGIN_PAGE_URL);
         Assert.assertEquals(getCurrentUrl(), LOGIN_PAGE_URL,"Login page is not open");
@@ -62,11 +62,11 @@ public class EditTests extends BaseTest {
                 .clickOnSubmit();
         waitForUrlToChange(EDIT_ACCOUNT_URL);
         Assert.assertEquals(getCurrentUrl(), USER_PAGE_URL, "User page is not open");
-        Assert.assertEquals(userPage.getUserName(), FIRST_NAME, "Names are not equal");
+        Assert.assertEquals(userPage.getUserLastName(), LAST_NAME, "Names are not equal");
     }
 
-    @Test
-    public void editMatchingPasswordsTest() {
+    @Test (description = "Test checks if passwords must match error message is present")
+    public void passwordsMustMatchErrorMessageTest() {
         driver.get(LOGIN_PAGE_URL);
         Assert.assertEquals(getCurrentUrl(), LOGIN_PAGE_URL,"Login page is not open");
         signInPage.enterData(EXISTING_EMAIL, EXISTING_PASSWORD)
@@ -81,8 +81,8 @@ public class EditTests extends BaseTest {
         Assert.assertTrue(editAccountPage.isPasswordsMustMatchErrorMessagePresent(), "Passwords must match error message is not present");
     }
 
-    @Test
-    public void editShortPasswordTest() {
+    @Test(description = "Test checks if minimum 8 characters error message is present")
+    public void minimum8CharactersErrorMessageTest() {
         driver.get(LOGIN_PAGE_URL);
         Assert.assertEquals(getCurrentUrl(), LOGIN_PAGE_URL,"Login page is not open");
         signInPage.enterData(EXISTING_EMAIL, EXISTING_PASSWORD)

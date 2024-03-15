@@ -1,5 +1,6 @@
 package lesson_13;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,18 +23,17 @@ public class UserPage {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("method gets user's first name")
     public String getUserName() {
         return nameText.getText();
     }
 
+    @Step("method gets user's last name")
     public String getUserLastName() {
         return lastNameText.getText();
     }
 
-    public boolean isEditAccBtnDisplayed() {
-        return editAccBtn.isDisplayed();
-    }
-
+    @Step("method clicks on Edit account button")
     public UserPage clickOnEditAcc() {
         editAccBtn.click();
         return this;

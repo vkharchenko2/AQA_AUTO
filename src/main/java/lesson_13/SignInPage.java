@@ -1,5 +1,6 @@
 package lesson_13;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,15 +19,17 @@ public class SignInPage {
 
     public SignInPage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
+    @Step("method fills in user's credentials")
     public SignInPage enterData(String emailAddress, String keyWord) {
         email.sendKeys(emailAddress);
         password.sendKeys(keyWord);
         return this;
     }
 
+    @Step("method clicks on Sign in button")
     public SignInPage clickOnSignInBtn() {
         signInBtn.click();
         return this;

@@ -1,5 +1,6 @@
 package lesson_13;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,6 +38,7 @@ public class RegistrationPage {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("method fills in registration data fields")
     public RegistrationPage enterKeyWords(String personalName,
                                           String surname,
                                           String date,
@@ -53,19 +55,23 @@ public class RegistrationPage {
         return this;
     }
 
+    @Step("method clicks on Submit button")
     public RegistrationPage clickOnSubmitBtn() {
         submitBtn.click();
         return this;
     }
 
+    @Step("method checks if invalid email error message is present")
     public boolean isInvalidEmailErrorMessageDisplayed() {
         return invalidEmailErrorMessage.isDisplayed();
     }
 
+    @Step("method checks if the password must match error message is present")
     public boolean isPasswordsMustMatchErrorMessageDisplayed() {
         return passwordsMustMatchErrorMessage.isDisplayed();
     }
 
+    @Step("method checks if the short password error message is present")
     public boolean isShortPasswordErrorMessageDisplayed() {
         return shortPasswordErrorMessage.isDisplayed();
     }

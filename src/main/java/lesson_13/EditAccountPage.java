@@ -1,5 +1,6 @@
 package lesson_13;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,23 +35,23 @@ public class EditAccountPage {
         PageFactory.initElements(driver, this);
     }
 
-    public boolean isDeleteAccBtnDisplayed() {
-        return deleteAccBtn.isDisplayed();
-    }
-
+    @Step("method clicks on Submit button")
     public EditAccountPage clickOnSubmit() {
         submitBtn.click();
         return this;
     }
 
+    @Step("method checks if the short password error message is present")
     public boolean isShortPasswordErrorMessagePresent() {
         return shortPasswordErrorMessage.isDisplayed();
     }
 
+    @Step("method checks if the password must match error message is present")
     public boolean isPasswordsMustMatchErrorMessagePresent() {
         return passwordsMustMatchErrorMessage.isDisplayed();
     }
 
+    @Step("method changes first name")
     public EditAccountPage changeName(String name) {
         Actions actions = new Actions(driver);
         actions.click(firstName).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL)
@@ -60,6 +61,7 @@ public class EditAccountPage {
         return this;
     }
 
+    @Step("method changes last name")
     public EditAccountPage changeLastName(String surname) {
         Actions actions = new Actions(driver);
         actions.click(lastName).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL)
@@ -69,6 +71,7 @@ public class EditAccountPage {
         return this;
     }
 
+    @Step("method fills in passwords fields")
     public EditAccountPage fillInPasswordsFields(String password1, String password2) {
         password.sendKeys(password1);
         newPassword.sendKeys(password2);
