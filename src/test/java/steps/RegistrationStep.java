@@ -2,7 +2,6 @@ package steps;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -10,8 +9,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.Coordinates;
-import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
@@ -72,31 +69,14 @@ public class RegistrationStep {
         confirmPasswordInput.setValue(confirmPassword);
     }
 
-//    @When("Qwerty")
-//    public void qwerty() {
-//        try {
-//            Thread.sleep(10000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 
     @Then("I check passwords must match error message is displayed Selenide")
     public void is_passwords_must_match_error_message_displayed_selenide() {
         passwordsMustMatchErrorMessage.shouldBe(Condition.visible);
-//        Wait<WebDriver> wait = new WebDriverWait(Selenide.webdriver().object(), Duration.ofSeconds(5));
-//        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//span[text()='Passwords must match']")));
-       // Assert.assertTrue(passwordsMustMatchErrorMessage.isDisplayed(), "Passwords must match error message is not displayed");
     }
 
     @And("I click on Submit button Selenide")
     public void click_on_submit_btn_selenide() {
         submitBtn.click();
-//        System.out.println("qwerty");
-//        Coordinates submitBtnCoordinates = submitBtn.getCoordinates();
-//        System.out.println("qwerty1");
-//        Selenide.actions()
-//                .moveToLocation(submitBtnCoordinates.inViewPort().getX(), submitBtnCoordinates.inViewPort().getY())
-//                .click();
     }
 }
