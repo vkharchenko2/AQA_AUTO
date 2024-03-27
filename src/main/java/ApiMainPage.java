@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -37,6 +38,7 @@ public class ApiMainPage {
         private static final By DIALOG_BTN = MobileBy.AccessibilityId("1. Dialog");
         private static final By CHANGE_THE_DATE_BTN = MobileBy.AccessibilityId("change the date");
         private static final By CHANGE_THE_TIME_SPINNER_BTN = MobileBy.AccessibilityId("change the time (spinner)");
+        private static final By TEXT_SWITCHER_PRESS_RESULT_NUMBER = MobileBy.AccessibilityId("io.appium.android.apis:id/switcher");
         private static final By PART_OF_THE_DAY_INPUT = By.xpath("//android.widget.LinearLayout[@resource-id='android:id/timePickerLayout']/android.widget.NumberPicker/android.widget.EditText");
         private static final By OK_BTN = By.id("android:id/button1");
         private static final By HOUR_INPUT = By.xpath("//android.widget.EditText[@resource-id='android:id/numberpicker_input'][1]");
@@ -45,12 +47,17 @@ public class ApiMainPage {
         private static final By MINUTE_BTN = By.xpath("//android.widget.LinearLayout[@resource-id='android:id/timePickerLayout']/android.widget.LinearLayout//android.widget.NumberPicker[2]//android.widget.Button");
         private static final By HOUR_BTN = By.xpath("//android.widget.LinearLayout[@resource-id='android:id/timePickerLayout']/android.widget.LinearLayout//android.widget.Button[1]");
         private static final By PART_OF_THE_DAY_BTN = By.xpath("//android.widget.LinearLayout[@resource-id='android:id/timePickerLayout']/android.widget.NumberPicker/android.widget.Button");
-        private static final By TEXT_VIEW = By.xpath("//android.widget.TextView");
+        private static final By TEXT_VIEW = By.xpath("//android.widget.TextView[@resource-id='android:id/text1']");
+        private static final By TEXT_VIEW1 = By.xpath("//android.widget.TextSwitcher[@resource-id=\"io.appium.android.apis:id/switcher\"]/android.widget.TextView");
     }
 
-    public void checkNumbersOfElements() {
+    public List<String> getNamesOfVisibleButtons() {
         List<MobileElement> elements = driver.findElements(Locators.TEXT_VIEW);
-        System.out.println("Number of elements: " + elements.size());
+        List<String> names = new ArrayList<>();
+        for (MobileElement mobileElement : elements) {
+            names.add(mobileElement.getText());
+        }
+        return names;
     }
 
     public void clickOnViewsBtn() {
@@ -148,5 +155,10 @@ public class ApiMainPage {
 
     public String getCurrentDate() {
         return driver.findElement(Locators.DATE_BAR).getText();
+    }
+
+
+    public String getNumberOfClicks() {
+        return driver.findElement(Locators.TEXT_VIEW1).getText();
     }
 }
