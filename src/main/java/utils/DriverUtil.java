@@ -1,3 +1,5 @@
+package utils;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -18,7 +20,7 @@ public class DriverUtil {
         return this.driver;
     }
 
-    AppiumDriver driver;
+    private AppiumDriver driver;
 
     private AppiumDriver initialDriver() throws MalformedURLException {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
