@@ -42,7 +42,7 @@ Feature: Testing of registration page
     And I set '<email>'to Email field Selenide
     And I set '<password>'to Password field Selenide
     And I set '<confirmPassword>'to ConfirmPassword field Selenide
-    And I click on Submit button Selenide
+    And I click on Andersen logo Selenide
     Then I check passwords must match error message is displayed Selenide
 
 

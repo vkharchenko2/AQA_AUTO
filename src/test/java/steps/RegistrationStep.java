@@ -24,6 +24,7 @@ public class RegistrationStep {
     private final SelenideElement confirmPasswordInput = $x("//input[@placeholder='Confirm Password']");
     private final SelenideElement passwordsMustMatchErrorMessage = $x("//span[text()='Passwords must match']");
     private final SelenideElement submitBtn = $x("//button[@type='submit']");
+    private final SelenideElement andersenLogo = $x("//img[@alt='logo']");
 
     @Given("Set up driver Selenide")
     public void set_up_driver_selenide() {
@@ -69,7 +70,6 @@ public class RegistrationStep {
         confirmPasswordInput.setValue(confirmPassword);
     }
 
-
     @Then("I check passwords must match error message is displayed Selenide")
     public void is_passwords_must_match_error_message_displayed_selenide() {
         passwordsMustMatchErrorMessage.shouldBe(Condition.visible);
@@ -78,5 +78,10 @@ public class RegistrationStep {
     @And("I click on Submit button Selenide")
     public void click_on_submit_btn_selenide() {
         submitBtn.click();
+    }
+
+    @And("I click on Andersen logo Selenide")
+    public void click_on_andersen_logo_selenide() {
+        andersenLogo.click();
     }
 }
