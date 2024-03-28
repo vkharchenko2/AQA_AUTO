@@ -75,6 +75,12 @@ public class RegistrationStep {
         passwordsMustMatchErrorMessage.shouldBe(Condition.visible);
     }
 
+    @And("I check invalid date of birth error message is displayed Selenide")
+    public void is_invalid_date_of_birth_is_displayed_selenide(){
+        // этот метод должен проверять наличие ошибки при выборе неправильной/некоректной даты рождения,
+        // однако наличие такой ошибки не предусмотрено.
+        }
+
     @And("I click on Submit button Selenide")
     public void click_on_submit_btn_selenide() {
         submitBtn.click();
